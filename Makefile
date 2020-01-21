@@ -1,5 +1,5 @@
 TARANTOOL_HOME?=/tarantool
-PHYTHON?=python3.6
+PYTHON?=python3.6
 VPYTHON?=./venv/bin/${PYTHON}
 
 build:
@@ -9,13 +9,12 @@ build:
 	 libunwind-dev libicu-dev \
 	 python python-pip python-setuptools python-dev \
 	 python-msgpack python-yaml python-argparse python-six python-gevent
-	git clone --recursive https://github.com/tarantool/tarantool.git -b 1.10 ${TARANTOOL_HOME}
-	cd ${TARANTOOL_HOME}
-	cmake .
-	make
-
+	git clone --recursive https://github.com/tarantool/tarantool.git -b 1.10 ${TARANTOOL_HOME} || :
+	cd ${TARANTOOL_HOME} && cmake . && make
+	
 	${PYTHON} -m venv venv
-	${VPYTHON} -m pip install -r requirements.txt
+	${VPYTHON} -m pip install wheel
+	${VPYTHON} -m pip install --no-cache-dir -r requirements.txt
 
 start_tarantool_app:
 	${TARANTOOL_HOME}/src/tarantool app.lua
