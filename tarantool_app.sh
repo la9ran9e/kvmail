@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 export $(cat .env)
-~/tarantool/src/tarantool app.lua
+${TARANTOOL_HOME}/src/tarantool app.lua
