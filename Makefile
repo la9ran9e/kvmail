@@ -1,4 +1,4 @@
-TARANTOOL_HOME?=~/tarantool
+TARANTOOL_HOME?=$${TARANTOOL_HOME}
 PYTHON?=python3.6
 VPYTHON?=./venv/bin/${PYTHON}
 
