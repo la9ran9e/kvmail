@@ -15,3 +15,9 @@ build:
 	${PYTHON} -m venv venv
 	${VPYTHON} -m pip install wheel
 	${VPYTHON} -m pip install --no-cache-dir -r requirements.txt
+
+start_tarantool_app:
+	${TARANTOOL_HOME}/src/tarantool app.lua
+
+stop_tarantool_app:
+	kill -s QUIT $$(cat tarantool.pid)
