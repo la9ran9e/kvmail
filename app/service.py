@@ -1,5 +1,9 @@
+import logging
 from tarantool import Connection
 from tarantool.error import DatabaseError
+
+
+logger = logging.getLogger(__name__)
 
 
 class KV:
@@ -12,6 +16,7 @@ class KV:
             ret = self.conn.insert(self.space, (key, value))
         except DatabaseError as err:
             if err.args[0] == 3:
+                logger.warning(f"Key {key!r} already exists")
                 raise KeyError(f"Key {key!r} already exists")
             else:
                 raise
@@ -21,6 +26,7 @@ class KV:
     def get(self, key):
         ret = self.conn.select(self.space, key)
         if not ret.data:
+            logger.warning(f"Key {key!r} does not exist")
             raise KeyError(f"Key {key!r} does not exist")
         return ret.data[0][1]
 
@@ -35,5 +41,6 @@ class KV:
     def delete(self, key):
         ret = self.conn.delete(self.space, key)
         if not ret.data:
+            logger.warning(f"Key {key!r} does not exist")
             raise KeyError(f"Key {key!r} does not exist")
         return ret.data[0][1]
