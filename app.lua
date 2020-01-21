@@ -1,7 +1,7 @@
 box.cfg {
     listen = '127.0.0.1:3313',
---    background = true,
---    log = 'tarantool.log',
+    background = true,
+    log = 'tarantool.log',
     pid_file = 'tarantool.pid'
 }
 
