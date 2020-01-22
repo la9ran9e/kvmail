@@ -61,5 +61,11 @@ $ make start_tarantool_app
 $ supervisorctl start kvmail_api
 ```
 
+Логи по умолчанию пишутся в следующем порядке:
+
++ `tarantool` - `./tarantool.log`
++ `kvmail_api` - `./api_out.log ./api_err.log`
++ `nginx` - `/tmp/access.log /tmp/error.log`
+
 ### Возникшие сложности
 За неимение достаточного количества времени, было сложно разобрать, как подтянуть конфиги из файла в tarantool-приложение. Поэтому вы можете наблюдать, что приложение не запускается в supervisor'е.
