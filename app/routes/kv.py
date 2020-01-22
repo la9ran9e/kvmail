@@ -86,7 +86,7 @@ def put(key: str, updater: PutItem):
         404: {"model": Message, "description": "Item with such key was not found"}
     }
 )
-def put(key: str):
+def delete(key: str):
     try:
         ret = kv.delete(key)
     except KeyError as err:
