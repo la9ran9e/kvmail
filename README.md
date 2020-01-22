@@ -7,6 +7,8 @@ Key-Value база данных на Tarantool и REST API к ней.
 ### Requiremrnts
 + `ubuntu 16.04+`
 + `python3.6+`
++ `supervisord`
++ `nginx`
 
 Остальные пакеты монтируются при сборке.
 
@@ -41,7 +43,7 @@ make build
 Линкуем конфиги:
 ```bash
 ln -s ${PWD}/nginx.conf /etc/nginx/sites-enabled/kvmail.conf
-lv -s ${PWD}/kvmail.conf /etc/supervisor/conf.d
+ln -s ${PWD}/kvmail.conf /etc/supervisor/conf.d
 ```
 
 ### Run
