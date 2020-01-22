@@ -3,6 +3,7 @@ PYTHON?=python3.6
 VPYTHON?=./venv/bin/${PYTHON}
 
 build:
+	export $(cat .env) && \
 	apt install -y build-essential cmake make coreutils sed \
 	 autoconf automake libtool zlib1g-dev \
 	 libreadline-dev libncurses5-dev libyaml-dev libssl-dev \
@@ -17,6 +18,7 @@ build:
 	${VPYTHON} -m pip install --no-cache-dir -r requirements.txt
 
 start_tarantool_app:
+	export $(cat .env) && \
 	${TARANTOOL_HOME}/src/tarantool app.lua
 
 stop_tarantool_app:
